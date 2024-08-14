@@ -6,17 +6,18 @@
 
   (1).https://huggingface.co/google/siglip-so400m-patch14-384
 
-    ![1723625956350](https://github.com/user-attachments/assets/00dc25e8-cf7e-4ffd-9b3d-e509c73669fe)
+      ![5aea951a2506d72af56e34c07dc88b1](https://github.com/user-attachments/assets/647d8a01-ae4d-40c4-b12e-f40bacc8e835)
 
-     
 
   (2).推荐下载 https://huggingface.co/unsloth/Meta-Llama-3.1-8B-bnb-4bit（如果你有A100 可以考虑下载meta-llama/Meta-Llama-3.1-8B）
   
-        ![1723625919045](https://github.com/user-attachments/assets/b6872999-819b-4e54-91ca-31c8401e0faa)
+      ![a6716f77cf7f23c6cea14ed1b186ceb](https://github.com/user-attachments/assets/8bcb7e07-58cb-41c0-9916-a92e5a81aab6)
+
 
   (3).必须手动下载:https://huggingface.co/spaces/fancyfeast/joy-caption-pre-alpha/tree/main/wpkklhc6 
 
-       ![1723626022233](https://github.com/user-attachments/assets/560cddd9-978a-4f52-b79a-835200174c75)
+      ![de6c2b8ba90c5f3053fda51359802ae](https://github.com/user-attachments/assets/9b0b0f5a-614d-49a7-9ca9-c342104bc5b8)
+
  
 反推:
 
