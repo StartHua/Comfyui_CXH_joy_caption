@@ -6,6 +6,7 @@
 
   (1).https://huggingface.co/google/siglip-so400m-patch14-384 放到clip/siglip-so400m-patch14-384
 
+![1](https://github.com/user-attachments/assets/16fff9e2-2109-44fc-8536-b0fe419bb433)
 
 
   (2).推荐下载 https://huggingface.co/unsloth/Meta-Llama-3.1-8B-bnb-4bit（如果你有A100 可以考虑下载meta-llama/Meta-Llama-3.1-8B）放到LLM/Meta-Llama-3.1-8B-bnb-4bit
