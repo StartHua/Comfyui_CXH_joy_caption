@@ -1,0 +1,5 @@
+huggingface_hub==0.24.3
+accelerate
+#torch
+transformers==4.43.3
+sentencepiece

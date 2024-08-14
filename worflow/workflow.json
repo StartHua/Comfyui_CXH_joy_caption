@@ -1,0 +1,189 @@
+{
+  "last_node_id": 5,
+  "last_link_id": 4,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "Joy_caption",
+      "pos": [
+        828,
+        498
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "joy_pipeline",
+          "type": "JoyPipeline",
+          "link": 4
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 2,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            3
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Joy_caption"
+      },
+      "widgets_values": [
+        "A descriptive caption for this image",
+        300,
+        0.5
+      ]
+    },
+    {
+      "id": 5,
+      "type": "Joy_caption_load",
+      "pos": [
+        454,
+        446
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "JoyPipeline",
+          "type": "JoyPipeline",
+          "links": [
+            4
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Joy_caption_load"
+      },
+      "widgets_values": [
+        "meta-llama/Meta-Llama-3.1-8B"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "easy showAnything",
+      "pos": [
+        1255,
+        502
+      ],
+      "size": {
+        "0": 356.4357604980469,
+        "1": 250.48460388183594
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "of a young girl standing on a lush green lawn, surrounded by tall trees with budding leaves, under a cloudy sky. The girl, approximately 3-5 years old, has light blonde hair and a cheerful expression, smiling with her teeth showing. She wears a white, short-sleeved dress adorned with colorful floral appliqués in shades of pink, yellow, and orange, and a matching white hat with a large pink flower on the side. Her dress has a full skirt and is knee-length, with delicate lace trim along the hem. She also wears white tights and white shoes, enhancing the purity of her attire. In her hands, she carries a bouquet of fresh flowers, including yellow, pink, and white varieties, held close to her chest. The background is softly blurred, emphasizing the girl as the focal point, with the trees and sky providing a serene, natural setting. The overall mood is joyful and whimsical, capturing the innocence and beauty of childhood."
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        198,
+        577
+      ],
+      "size": [
+        570.2863188912281,
+        474.07759457475504
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2
+          ],
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "balabala_schnell.png",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      2,
+      3,
+      0,
+      2,
+      1,
+      "IMAGE"
+    ],
+    [
+      3,
+      2,
+      0,
+      4,
+      0,
+      "*"
+    ],
+    [
+      4,
+      5,
+      0,
+      2,
+      0,
+      "JoyPipeline"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8769226950000014,
+      "offset": [
+        -5.531487925200333,
+        -181.09476693793715
+      ]
+    }
+  },
+  "version": 0.4
+}
