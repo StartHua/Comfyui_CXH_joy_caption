@@ -19,15 +19,6 @@ class JoyPipeline:
         self.tokenizer = None
         self.text_model = None
         self.image_adapter = None
-        self.parent = None
-    
-    def clearCache(self):
-        self.clip_model = None
-        self.clip_processor =None
-        self.tokenizer = None
-        self.text_model = None
-        self.image_adapter = None 
-
 
 class ImageAdapter(nn.Module):
 	def __init__(self, input_features: int, output_features: int):
@@ -45,9 +36,6 @@ class ImageAdapter(nn.Module):
 class Joy_caption_load:
 
     def __init__(self):
-        self.model = None
-        self.pipeline = JoyPipeline()
-        self.pipeline.parent = self
         pass
 
     @classmethod
@@ -55,20 +43,16 @@ class Joy_caption_load:
         return {
             "required": {
                 "model": (["unsloth/Meta-Llama-3.1-8B-bnb-4bit", "meta-llama/Meta-Llama-3.1-8B"],), 
-               
             }
         }
 
     CATEGORY = "CXH/LLM"
     RETURN_TYPES = ("JoyPipeline",)
     FUNCTION = "gen"
+    def gen(self,model):
+        pipeline = JoyPipeline()
 
-    def loadCheckPoint(self):
-        # 清除一波
-        if self.pipeline != None:
-            self.pipeline.clearCache() 
-       
-         # clip
+        # clip
         model_id = "google/siglip-so400m-patch14-384"
         CLIP_PATH = download_hg_model(model_id,"clip")
 
@@ -78,6 +62,7 @@ class Joy_caption_load:
                 trust_remote_code=True
             )
             
+        
         clip_model = clip_model.vision_model
         clip_model.eval()
         clip_model.requires_grad_(False)
@@ -85,7 +70,7 @@ class Joy_caption_load:
 
        
         # LLM
-        MODEL_PATH = download_hg_model(self.model,"LLM")
+        MODEL_PATH = download_hg_model(model,"LLM")
         tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH,use_fast=False)
         assert isinstance(tokenizer, PreTrainedTokenizer) or isinstance(tokenizer, PreTrainedTokenizerFast), f"Tokenizer is of type {type(tokenizer)}"
 
@@ -101,21 +86,13 @@ class Joy_caption_load:
         adjusted_adapter.eval()
         adjusted_adapter.to("cuda")
 
-        self.pipeline.clip_model = clip_model
-        self.pipeline.clip_processor = clip_processor
-        self.pipeline.tokenizer = tokenizer
-        self.pipeline.text_model = text_model
-        self.pipeline.image_adapter = adjusted_adapter
-    
-    def clearCache(self):
-         if self.pipeline != None:
-              self.pipeline.clearCache()
+        pipeline.clip_model = clip_model
+        pipeline.clip_processor = clip_processor
+        pipeline.tokenizer = tokenizer
+        pipeline.text_model = text_model
+        pipeline.image_adapter = adjusted_adapter
 
-    def gen(self,model):
-        if self.model == None or self.model != model or self.pipeline == None:
-            self.model = model
-            self.loadCheckPoint()
-        return (self.pipeline,)
+        return (pipeline,)
 
 class Joy_caption:
 
@@ -131,26 +108,18 @@ class Joy_caption:
                 "prompt":   ("STRING", {"multiline": True, "default": "A descriptive caption for this image"},),
                 "max_new_tokens":("INT", {"default": 300, "min": 10, "max": 1000, "step": 1}),
                 "temperature": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
-                "cache": ("BOOLEAN", {"default": False}),
             }
         }
 
     CATEGORY = "CXH/LLM"
     RETURN_TYPES = ("STRING",)
     FUNCTION = "gen"
-    def gen(self,joy_pipeline,image,prompt,max_new_tokens,temperature,cache): 
-
-        if joy_pipeline.clip_processor == None :
-            joy_pipeline.parent.loadCheckPoint()    
-
+    def gen(self,joy_pipeline,image,prompt,max_new_tokens,temperature):    
         clip_processor = joy_pipeline.clip_processor
         tokenizer = joy_pipeline.tokenizer
         clip_model = joy_pipeline.clip_model
         image_adapter = joy_pipeline.image_adapter
         text_model = joy_pipeline.text_model
-
-     
-
         input_image = tensor2pil(image)
 
         # Preprocess image
@@ -194,8 +163,5 @@ class Joy_caption:
 
         caption = tokenizer.batch_decode(generate_ids, skip_special_tokens=False, clean_up_tokenization_spaces=False)[0]
         r = caption.strip()
-
-        if cache == False:
-           joy_pipeline.parent.clearCache()  
 
         return (r,)
