@@ -6,7 +6,8 @@
 
   (1).https://huggingface.co/google/siglip-so400m-patch14-384
 
-    
+    ![1](https://github.com/user-attachments/assets/e4cc1c42-e5af-43eb-b613-deec048558e9)
+
 
 
   (2).推荐下载 https://huggingface.co/unsloth/Meta-Llama-3.1-8B-bnb-4bit（如果你有A100 可以考虑下载meta-llama/Meta-Llama-3.1-8B）
