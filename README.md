@@ -11,11 +11,14 @@
 
   (2).推荐下载 https://huggingface.co/unsloth/Meta-Llama-3.1-8B-bnb-4bit（如果你有A100 可以考虑下载meta-llama/Meta-Llama-3.1-8B）放到LLM/Meta-Llama-3.1-8B-bnb-4bit
   
+![2](https://github.com/user-attachments/assets/ac20590b-2bf2-4768-af2e-860e3d8a31e3)
 
 
   (3).必须手动下载:https://huggingface.co/spaces/fancyfeast/joy-caption-pre-alpha/tree/main/wpkklhc6   放到Joy_caption 下
 
- 
+ ![3](https://github.com/user-attachments/assets/237dd9fd-1c37-40cc-a287-086cf5618b6e)
+
+
 反推:
 
 ![反推](https://github.com/user-attachments/assets/095b252e-9dcd-49aa-94d6-e93671b39767)
