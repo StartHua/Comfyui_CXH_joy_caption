@@ -1,3 +1,5 @@
+注意： Comfyui_image2prompt这个节点有安装的可以查看下直接transform版本是否被强制回退了!
+
 1.安装依赖requirements.txt(注意：transformers 版本不能太低)
 
       直接点击:install_req.bat 安装依赖
