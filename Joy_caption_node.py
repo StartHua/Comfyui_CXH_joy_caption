@@ -129,8 +129,8 @@ class Joy_caption:
                 "joy_pipeline": ("JoyPipeline",),
                 "image": ("IMAGE",),
                 "prompt":   ("STRING", {"multiline": True, "default": "A descriptive caption for this image"},),
-                "max_new_tokens":("INT", {"default": 300, "min": 10, "max": 1000, "step": 1}),
-                "temperature": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "max_new_tokens":("INT", {"default": 1024, "min": 10, "max": 4096, "step": 1}),
+                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "cache": ("BOOLEAN", {"default": False}),
             }
         }

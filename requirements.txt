@@ -1,5 +1,12 @@
 huggingface_hub==0.24.3
-accelerate
-#torch
 transformers>=4.43.3
-sentencepiece
+tqdm
+numpy
+surrealist
+boto3==1.34.86
+llama-cpp-python==0.2.89
+Pillow==10.1.0
+sentencepiece==0.1.99
+accelerate>=0.30.1
+bitsandbytes>=0.43.1
+peft>=0.9.0

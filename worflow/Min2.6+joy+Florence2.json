@@ -1,0 +1,527 @@
+{
+  "last_node_id": 11,
+  "last_link_id": 11,
+  "nodes": [
+    {
+      "id": 9,
+      "type": "CXH_Min2_6_prompt_Run",
+      "pos": [
+        1177,
+        407
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "CXH_Hg_Pipe",
+          "link": 6
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            10
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_Min2_6_prompt_Run"
+      },
+      "widgets_values": [
+        "A descriptive caption for this image ",
+        2048,
+        0.7
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 4,
+      "type": "Joy_caption",
+      "pos": [
+        1195,
+        897
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "joy_pipeline",
+          "type": "JoyPipeline",
+          "link": 1
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            3
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Joy_caption"
+      },
+      "widgets_values": [
+        "A descriptive caption for this image ",
+        2048,
+        0.7000000000000001,
+        false
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 8,
+      "type": "CXH_Florence2Run",
+      "pos": [
+        1210,
+        1417
+      ],
+      "size": {
+        "0": 400,
+        "1": 304
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 8
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": [
+            11
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "more_detailed_caption",
+        true,
+        false,
+        2048,
+        3,
+        true,
+        ""
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 7,
+      "type": "CXH_HG_Model_Load",
+      "pos": [
+        1187,
+        286
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "CXH_Hg_Pipe",
+          "links": [
+            6
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_HG_Model_Load"
+      },
+      "widgets_values": [
+        "pzc163/MiniCPMv2_6-prompt-generator"
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 10,
+      "type": "CXH_DownloadAndLoadFlorence2Model",
+      "pos": [
+        1209,
+        1257
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "links": [
+            9
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_DownloadAndLoadFlorence2Model"
+      },
+      "widgets_values": [
+        "thwri/CogFlorence-2.2-Large",
+        "fp16",
+        "sdpa"
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 3,
+      "type": "Joy_caption_load",
+      "pos": [
+        1210,
+        791
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "JoyPipeline",
+          "type": "JoyPipeline",
+          "links": [
+            1
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Joy_caption_load"
+      },
+      "widgets_values": [
+        "unsloth/Meta-Llama-3.1-8B-bnb-4bit"
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        500,
+        673
+      ],
+      "size": [
+        558.8251844824922,
+        765.5085685298109
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2,
+            7,
+            8
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "26124763.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "easy showAnything",
+      "pos": [
+        1687,
+        401
+      ],
+      "size": {
+        "0": 390.0909423828125,
+        "1": 252.36358642578125
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 10
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "The image presents a striking digital illustration of a knight in full armor, standing resolute against a backdrop of a tumultuous sky. The knight, clad in a dark, ornate suit of armor, wields a sword that glows with an otherworldly light, suggesting it may be imbued with magical properties. The armor is intricately designed, featuring gold accents that catch the eye amidst the darker tones. The knight's helmet is adorned with a plume, adding to the regal appearance. The background is a dramatic canvas of dark clouds, hinting at an impending storm, which contrasts with the fiery glow emanating from the sword, creating a sense of tension and anticipation. The overall composition of the image suggests a narrative of conflict and heroism, with the knight poised to face whatever challenges lie ahead."
+      ]
+    },
+    {
+      "id": 5,
+      "type": "easy showAnything",
+      "pos": [
+        1690,
+        854
+      ],
+      "size": {
+        "0": 462.2198791503906,
+        "1": 255.30990600585938
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "1. This is a digital illustration depicting a majestic, armored warrior standing in a dramatic, stormy landscape. The warrior is a tall, imposing figure, clad in dark, metallic armor with intricate designs and sharp spikes. His helmet resembles a fearsome beast's head, with long, sharp horns curving backward. He wears a flowing cape that billows in the wind, adding a sense of movement and strength to his imposing stance. His eyes are hidden behind a visor, giving him an aura of mystery and intensity. \n\nHis left arm is sheathed in a long sword with a glowing, fiery blade, and his right hand grasps a similar sword with flames licking along its edge. The background is a tumultuous sky filled with dark clouds and flashes of lightning, creating a sense of impending danger and chaos. The ground is rugged and rocky, with small explosions of fiery orange gas rising from the surface, enhancing the sense of volatility and power. \n\nThe overall mood of the image is dark and foreboding, with a sense of otherworldly majesty. The artwork utilizes a detailed, realistic style, with a focus on the textures of the armor and the dynamic, swirling motion of the cape and the fiery blades."
+      ]
+    },
+    {
+      "id": 11,
+      "type": "easy showAnything",
+      "pos": [
+        1640,
+        1455
+      ],
+      "size": {
+        "0": 462.2198791503906,
+        "1": 255.30990600585938
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 11
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "A dramatic portrayal of a dark, armored warrior in a dynamic pose, wielding a long, fiery sword. The warrior wears ornate, dark armor with intricate designs and a helmet featuring a crown-like visor. The background is a stormy sky filled with dark clouds, and the ground is covered in fiery orange and yellow hues, indicating either either dawn or dusk. The overall color palette is dominated by dark blues, blacks, and fiery oranges, creating a sense of foreboding and intensity."
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      3,
+      0,
+      4,
+      0,
+      "JoyPipeline"
+    ],
+    [
+      2,
+      1,
+      0,
+      4,
+      1,
+      "IMAGE"
+    ],
+    [
+      3,
+      4,
+      0,
+      5,
+      0,
+      "*"
+    ],
+    [
+      6,
+      7,
+      0,
+      9,
+      0,
+      "CXH_Hg_Pipe"
+    ],
+    [
+      7,
+      1,
+      0,
+      9,
+      1,
+      "IMAGE"
+    ],
+    [
+      8,
+      1,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      9,
+      10,
+      0,
+      8,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      10,
+      9,
+      0,
+      2,
+      0,
+      "*"
+    ],
+    [
+      11,
+      8,
+      2,
+      11,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Min2_6",
+      "bounding": [
+        1156,
+        167,
+        928,
+        501
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "locked": false
+    },
+    {
+      "title": "Joy_caption",
+      "bounding": [
+        1154,
+        699,
+        1032,
+        449
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "locked": false
+    },
+    {
+      "title": "florence2",
+      "bounding": [
+        1148,
+        1164,
+        1041,
+        586
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "locked": false
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5131581182307073,
+      "offset": [
+        -133.45930116147088,
+        -137.71244198828424
+      ]
+    }
+  },
+  "version": 0.4
+}
