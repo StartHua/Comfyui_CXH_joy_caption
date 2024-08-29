@@ -1,4 +1,7 @@
+![1724901350282](https://github.com/user-attachments/assets/c9d9cd10-fbd6-4aeb-91b6-f2740c3998cc)
+
 (1).基于comfyui节点图片放推(Recommended based on comfyui node pictures)
+
     1.Joy_caption
 
     2.miniCPMv2_6_prompt_generator
