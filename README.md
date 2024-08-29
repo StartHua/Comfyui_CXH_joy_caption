@@ -18,7 +18,9 @@ worflow/Min2.6+joy+Florence2.json
 
   2. 下载模型或者运行comfyui自动下载模型到合适文件夹(Download the model or run Comfyui to automatically download the model to the appropriate folder)
 
-(3) Joy_caption
+(3) 模型安装（Install model）
+
+   1).Joy_caption
 
    .运行自动下载模型(推荐手动下载) Run automatic download model (manual download recommended)
    
@@ -35,6 +37,15 @@ worflow/Min2.6+joy+Florence2.json
     3.必须手动下载(Must be downloaded manually):https://huggingface.co/spaces/fancyfeast/joy-caption-pre-alpha/tree/main/wpkklhc6   (put in)Joy_caption 
       
 ![1724901527482](https://github.com/user-attachments/assets/e8ec1be6-a96c-4e73-9422-7bcdafb8f1d4)
+
+ 2).MiniCPMv2_6-prompt-generator + CogFlorence
+ 
+ https://huggingface.co/pzc163/MiniCPMv2_6-prompt-generator
+ 
+ https://huggingface.co/thwri/CogFlorence-2.2-Large
+ 
+ ![1724902196890](https://github.com/user-attachments/assets/22373c22-8083-4b3f-af10-774d86560f16)
+
 
 
 
