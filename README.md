@@ -43,10 +43,10 @@ worflow/Min2.6+joy+Florence2.json
  https://huggingface.co/pzc163/MiniCPMv2_6-prompt-generator
  
  https://huggingface.co/thwri/CogFlorence-2.2-Large
-
- run with:flux1-dev-Q8_0.gguf
  
  ![1724902196890](https://github.com/user-attachments/assets/22373c22-8083-4b3f-af10-774d86560f16)
+
+ Run with:flux1-dev-Q8_0.gguf
 
  ![e8ad7fa14f807184a99ea23b31e8a60](https://github.com/user-attachments/assets/178ee440-919e-4b28-b1bd-c2c1e2e0ceb4)
 
