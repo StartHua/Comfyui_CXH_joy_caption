@@ -19,7 +19,9 @@ worflow/Min2.6+joy+Florence2.json
   2. 下载模型或者运行comfyui自动下载模型到合适文件夹(Download the model or run Comfyui to automatically download the model to the appropriate folder)
 
 (3) Joy_caption
+
    .运行自动下载模型(推荐手动下载) Run automatic download model (manual download recommended)
+   
     1.https://huggingface.co/google/siglip-so400m-patch14-384 放到(put in)clip/siglip-so400m-patch14-384
       
 ![1724901434148](https://github.com/user-attachments/assets/12ad9627-e121-4bc8-98cc-313fa491bde4)
