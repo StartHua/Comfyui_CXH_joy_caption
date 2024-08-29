@@ -46,6 +46,15 @@ worflow/Min2.6+joy+Florence2.json
  
  ![1724902196890](https://github.com/user-attachments/assets/22373c22-8083-4b3f-af10-774d86560f16)
 
+ ![e8ad7fa14f807184a99ea23b31e8a60](https://github.com/user-attachments/assets/178ee440-919e-4b28-b1bd-c2c1e2e0ceb4)
+
+ ![1724897220972](https://github.com/user-attachments/assets/ac3c072d-dccc-4f29-bcbd-45c7945407be)
+
+ ![1724897584034](https://github.com/user-attachments/assets/584adc69-3e0d-4cb9-8392-0fe337dc34a2)
+
+
+
+
 
 
 
