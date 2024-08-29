@@ -1,3 +1,5 @@
+worflow/Min2.6+joy+Florence2.json
+
 ![1724901350282](https://github.com/user-attachments/assets/c9d9cd10-fbd6-4aeb-91b6-f2740c3998cc)
 
 (1).基于comfyui节点图片放推(Recommended based on comfyui node pictures)
@@ -36,7 +38,7 @@
       
         ![1724901527482](https://github.com/user-attachments/assets/e8ec1be6-a96c-4e73-9422-7bcdafb8f1d4)
 
-(4).例子：worflow/Min2.6+joy+Florence2.json
+
 
 
 
