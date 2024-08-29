@@ -21,16 +21,19 @@
     1.运行自动下载模型(推荐手动下载) Run automatic download model (manual download recommended)
 
       (1).https://huggingface.co/google/siglip-so400m-patch14-384 放到(put in)clip/siglip-so400m-patch14-384
+      
 
         ![1724901434148](https://github.com/user-attachments/assets/12ad9627-e121-4bc8-98cc-313fa491bde4)
 
     
       (2). https://huggingface.co/unsloth/Meta-Llama-3.1-8B-bnb-4bit 放到(put in)LLM/Meta-Llama-3.1-8B-bnb-4bit
       
+      
         ![1724901495135](https://github.com/user-attachments/assets/3cac31a7-8150-4d78-96d1-8aa3198fe572)
 
 
-      (3).必须手动下载(Must be downloaded manually):https://huggingface.co/spaces/fancyfeast/joy-caption-pre-alpha/tree/main/wpkklhc6   放到Joy_caption 下
+      (3).必须手动下载(Must be downloaded manually):https://huggingface.co/spaces/fancyfeast/joy-caption-pre-alpha/tree/main/wpkklhc6   (put in)Joy_caption 
+      
         ![1724901527482](https://github.com/user-attachments/assets/e8ec1be6-a96c-4e73-9422-7bcdafb8f1d4)
 
 (4).例子：worflow/Min2.6+joy+Florence2.json
