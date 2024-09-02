@@ -1,0 +1,535 @@
+{
+  "last_node_id": 72,
+  "last_link_id": 91,
+  "nodes": [
+    {
+      "id": 68,
+      "type": "Joy_caption_load",
+      "pos": [
+        1401,
+        373
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "JoyPipeline",
+          "type": "JoyPipeline",
+          "links": [
+            84
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Joy_caption_load"
+      },
+      "widgets_values": [
+        "unsloth/Meta-Llama-3.1-8B-bnb-4bit"
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 60,
+      "type": "LayerUtility: String",
+      "pos": [
+        1836,
+        377
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "string",
+          "type": "STRING",
+          "links": [
+            75
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerUtility: String"
+      },
+      "widgets_values": [
+        "TriggerWord"
+      ]
+    },
+    {
+      "id": 67,
+      "type": "Joy_caption",
+      "pos": [
+        1377,
+        488
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "joy_pipeline",
+          "type": "JoyPipeline",
+          "link": 84
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 85
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            89
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Joy_caption"
+      },
+      "widgets_values": [
+        "A descriptive caption for this image",
+        300,
+        0.5,
+        true
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 48,
+      "type": "LoadImageListFromDir //Inspire",
+      "pos": [
+        596,
+        537
+      ],
+      "size": {
+        "0": 315,
+        "1": 170
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "directory",
+          "type": "STRING",
+          "link": 70,
+          "widget": {
+            "name": "directory"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            90
+          ],
+          "slot_index": 0,
+          "shape": 6
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 6
+        },
+        {
+          "name": "FILE PATH",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImageListFromDir //Inspire"
+      },
+      "widgets_values": [
+        "E:\\tmp\\test",
+        0,
+        0,
+        false
+      ]
+    },
+    {
+      "id": 57,
+      "type": "LayerUtility: String",
+      "pos": [
+        597,
+        430
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "string",
+          "type": "STRING",
+          "links": [
+            70
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerUtility: String"
+      },
+      "widgets_values": [
+        "C:\\Users\\chenxinghua\\Desktop\\新建文件夹 (3)\\test"
+      ]
+    },
+    {
+      "id": 61,
+      "type": "LayerUtility: TextJoin",
+      "pos": [
+        1840,
+        490
+      ],
+      "size": {
+        "0": 315,
+        "1": 130
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text_1",
+          "type": "STRING",
+          "link": 75,
+          "widget": {
+            "name": "text_1"
+          }
+        },
+        {
+          "name": "text_2",
+          "type": "STRING",
+          "link": 89,
+          "widget": {
+            "name": "text_2"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            77
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerUtility: TextJoin"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 31,
+      "type": "LayerUtility: ImageTaggerSave",
+      "pos": [
+        2180,
+        475
+      ],
+      "size": {
+        "0": 397.0539245605469,
+        "1": 422.8654479980469
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 88
+        },
+        {
+          "name": "tag_text",
+          "type": "STRING",
+          "link": 77,
+          "widget": {
+            "name": "tag_text"
+          }
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerUtility: ImageTaggerSave"
+      },
+      "widgets_values": [
+        "",
+        "C:\\Users\\chenxinghua\\Desktop\\新建文件夹 (3)\\test2",
+        "my_training_set",
+        "None",
+        "png",
+        80,
+        true
+      ]
+    },
+    {
+      "id": 65,
+      "type": "LayerUtility: ImageRemoveAlpha",
+      "pos": [
+        964,
+        400
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "RGBA_image",
+          "type": "IMAGE",
+          "link": 81
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 82
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RGB_image",
+          "type": "IMAGE",
+          "links": [
+            85,
+            88
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerUtility: ImageRemoveAlpha"
+      },
+      "widgets_values": [
+        true,
+        "#FFFFFF"
+      ]
+    },
+    {
+      "id": 63,
+      "type": "LayerMask: TransparentBackgroundUltra",
+      "pos": [
+        959,
+        549
+      ],
+      "size": {
+        "0": 327.6000061035156,
+        "1": 270
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 90
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            81,
+            91
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            82
+          ],
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerMask: TransparentBackgroundUltra"
+      },
+      "widgets_values": [
+        "ckpt_base.pth",
+        "VITMatte",
+        6,
+        6,
+        0.01,
+        0.99,
+        true,
+        "cuda",
+        2
+      ]
+    },
+    {
+      "id": 72,
+      "type": "PreviewImage",
+      "pos": [
+        964,
+        865
+      ],
+      "size": [
+        329.67821458121784,
+        156.48269739093905
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 91
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    }
+  ],
+  "links": [
+    [
+      70,
+      57,
+      0,
+      48,
+      0,
+      "STRING"
+    ],
+    [
+      75,
+      60,
+      0,
+      61,
+      0,
+      "STRING"
+    ],
+    [
+      77,
+      61,
+      0,
+      31,
+      1,
+      "STRING"
+    ],
+    [
+      81,
+      63,
+      0,
+      65,
+      0,
+      "IMAGE"
+    ],
+    [
+      82,
+      63,
+      1,
+      65,
+      1,
+      "MASK"
+    ],
+    [
+      84,
+      68,
+      0,
+      67,
+      0,
+      "JoyPipeline"
+    ],
+    [
+      85,
+      65,
+      0,
+      67,
+      1,
+      "IMAGE"
+    ],
+    [
+      88,
+      65,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      89,
+      67,
+      0,
+      61,
+      1,
+      "STRING"
+    ],
+    [
+      90,
+      48,
+      0,
+      63,
+      0,
+      "IMAGE"
+    ],
+    [
+      91,
+      63,
+      0,
+      72,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6115909044841474,
+      "offset": [
+        -315.6032329072262,
+        -178.67335371150824
+      ]
+    }
+  },
+  "version": 0.4
+}
