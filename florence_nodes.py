@@ -47,7 +47,8 @@ class CXH_DownloadAndLoadFlorence2Model:
                     'microsoft/Florence-2-large-ft',
                     'HuggingFaceM4/Florence-2-DocVQA',
                     'thwri/CogFlorence-2-Large-Freeze',
-                    'thwri/CogFlorence-2.2-Large'
+                    'thwri/CogFlorence-2.2-Large',
+                    'MiaoshouAI/Florence-2-base-PromptGen-v1.5'
                     ],
                     {
                     "default": 'thwri/CogFlorence-2.2-Large'
