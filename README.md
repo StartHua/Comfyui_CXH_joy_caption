@@ -1,4 +1,4 @@
-worflow/Min2.6+joy+Florence2.json
+.2024-9-2 更新批量打标案例(Update batch marking cases) 速度：florence2<min2.6<joy
 
 ![1724901350282](https://github.com/user-attachments/assets/c9d9cd10-fbd6-4aeb-91b6-f2740c3998cc)
 
