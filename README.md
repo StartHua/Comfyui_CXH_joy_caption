@@ -1,4 +1,4 @@
-.2024-9-9 florence2 Add Florence-2-large-PromptGen-v1.5
+.2024-9-9 florence2 Add Florence-2-large-PromptGen-v1.5 and MiniCPM3-4B(CXH_MinCP3_4B_Load CXH_MinCP3_4B_Chat) 
 
 .2024-9-6 florence2 Add Florence-2-base-PromptGen-v1.5 
 
