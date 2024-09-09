@@ -48,10 +48,11 @@ class CXH_DownloadAndLoadFlorence2Model:
                     'HuggingFaceM4/Florence-2-DocVQA',
                     'thwri/CogFlorence-2-Large-Freeze',
                     'thwri/CogFlorence-2.2-Large',
-                    'MiaoshouAI/Florence-2-base-PromptGen-v1.5'
+                    'MiaoshouAI/Florence-2-base-PromptGen-v1.5',
+                    'MiaoshouAI/Florence-2-large-PromptGen-v1.5'
                     ],
                     {
-                    "default": 'thwri/CogFlorence-2.2-Large'
+                    "default": 'MiaoshouAI/Florence-2-large-PromptGen-v1.5'
                     }),
             "precision": ([ 'fp16','bf16','fp32'],
                     {
@@ -142,8 +143,13 @@ class CXH_Florence2Run:
                     'referring_expression_segmentation',
                     'ocr',
                     'ocr_with_region',
-                    'docvqa'
+                    'docvqa',
+                    'mixed_caption',
+                    'generate_tags'
                     ],
+                    {
+                    "default": 'more_detailed_caption'
+                    }
                    ),
                 "fill_mask": ("BOOLEAN", {"default": True}),
             },
@@ -191,8 +197,8 @@ class CXH_Florence2Run:
         }
         task_prompt = prompts.get(task, '<OD>')
 
-        if (task not in ['referring_expression_segmentation', 'caption_to_phrase_grounding', 'docvqa']) and text_input:
-            raise ValueError("Text input (prompt) is only supported for 'referring_expression_segmentation', 'caption_to_phrase_grounding', and 'docvqa'")
+        # if (task not in ['referring_expression_segmentation', 'caption_to_phrase_grounding', 'docvqa']) and text_input:
+        #     raise ValueError("Text input (prompt) is only supported for 'referring_expression_segmentation', 'caption_to_phrase_grounding', and 'docvqa'")
 
         if text_input != "":
             prompt = task_prompt + " " + text_input
