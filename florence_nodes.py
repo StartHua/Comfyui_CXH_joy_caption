@@ -152,14 +152,14 @@ class CXH_Florence2Run:
                     }
                    ),
                 "fill_mask": ("BOOLEAN", {"default": True}),
-            },
-            "optional": {
                 "keep_model_loaded": ("BOOLEAN", {"default": False}),
                 "max_new_tokens": ("INT", {"default": 1024, "min": 1, "max": 4096}),
                 "num_beams": ("INT", {"default": 3, "min": 1, "max": 64}),
                 "do_sample": ("BOOLEAN", {"default": True}),
                 "output_mask_select": ("STRING", {"default": ""}),
+                "seed":("INT"),
             }
+    
         }
     
     RETURN_TYPES = ("IMAGE", "MASK", "STRING", "JSON")
@@ -167,8 +167,8 @@ class CXH_Florence2Run:
     FUNCTION = "encode"
     CATEGORY = "Florence2"
 
-    def encode(self, image, text_input, florence2_model, task, fill_mask, keep_model_loaded=False, 
-            num_beams=3, max_new_tokens=1024, do_sample=True, output_mask_select=""):
+    def encode(self, image, text_input, florence2_model, task, fill_mask,keep_model_loaded, 
+            num_beams, max_new_tokens, do_sample, output_mask_select,seed):
         device = mm.get_torch_device()
         _, height, width, _ = image.shape
         offload_device = mm.unet_offload_device()

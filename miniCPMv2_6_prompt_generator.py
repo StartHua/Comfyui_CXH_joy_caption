@@ -66,14 +66,15 @@ class CXH_Min2_6_prompt_Run :
                 "image": ("IMAGE",),
                 "prompt":   ("STRING", {"multiline": True, "default": "Provide a detailed description of the details and content contained in the image, and generate a short prompt that can be used for image generation tasks in Stable Diffusion,remind you only need respons prompt itself and no other information."},),
                 "max_tokens":("INT", {"default": 1024, "min": 10, "max": 4048, "step": 1}),
-                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01})
+                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "seed":("INT")
             }
         }
 
     CATEGORY = "CXH/LLM"
     RETURN_TYPES = ("STRING",)
     FUNCTION = "gen"
-    def gen(self,pipe,image,prompt,max_tokens,temperature): 
+    def gen(self,pipe,image,prompt,max_tokens,temperature,seed): 
 
         image = tensor2pil(image)
         question = prompt
