@@ -1,0 +1,168 @@
+{
+  "last_node_id": 22,
+  "last_link_id": 23,
+  "nodes": [
+    {
+      "id": 22,
+      "type": "easy showAnything",
+      "pos": {
+        "0": 1101,
+        "1": 666,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 419.568115234375,
+        "1": 274.0469055175781
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 22
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "中国位于亚洲的东部，太平洋的西岸。其领土范围广阔，北至黑龙江省漠河县北端的黑龙江主航道中心线（53°N），南至海南省南沙群岛的曾母暗沙（4°N），东至黑龙江省黑龙江与乌苏里江主航道中心线的汇合处（135°E），西至新疆维吾尔自治区帕米尔高原（73°E）。中国陆地总面积约960万平方千米，东部和南部大陆海岸线1.8万千米，海域总面积约473万平方千米。"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "CXH_MinCP3_4B_Load",
+      "pos": {
+        "0": 301,
+        "1": 685,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "CXH_MinCP3_4B_Pipe",
+          "links": [
+            21
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_MinCP3_4B_Load"
+      },
+      "widgets_values": [
+        "openbmb/MiniCPM3-4B"
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    },
+    {
+      "id": 21,
+      "type": "CXH_MinCP3_4B_Chat",
+      "pos": {
+        "0": 673,
+        "1": 681,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "CXH_MinCP3_4B_Pipe",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            22
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_MinCP3_4B_Chat"
+      },
+      "widgets_values": [
+        "中国在哪里？",
+        0.7,
+        1024,
+        0.7
+      ],
+      "color": "#1b4669",
+      "bgcolor": "#29699c"
+    }
+  ],
+  "links": [
+    [
+      21,
+      20,
+      0,
+      21,
+      0,
+      "CXH_MinCP3_4B_Pipe"
+    ],
+    [
+      22,
+      21,
+      0,
+      22,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7067058488964866,
+      "offset": [
+        262.3736311173096,
+        -229.61227808628627
+      ]
+    }
+  },
+  "version": 0.4
+}
