@@ -169,23 +169,41 @@ class Joy_caption:
         # Embed prompt
         prompt_embeds = text_model.model.embed_tokens(prompt.to('cuda'))
         assert prompt_embeds.shape == (1, prompt.shape[1], text_model.config.hidden_size), f"Prompt shape is {prompt_embeds.shape}, expected {(1, prompt.shape[1], text_model.config.hidden_size)}"
-        embedded_bos = text_model.model.embed_tokens(torch.tensor([[tokenizer.bos_token_id]], device=text_model.device, dtype=torch.int64))   
+        embedded_bos = text_model.model.embed_tokens(torch.tensor([[tokenizer.bos_token_id]], device=text_model.device, dtype=torch.int64))
 
         # Construct prompts
         inputs_embeds = torch.cat([
-            embedded_bos.expand(embedded_images.shape[0], -1, -1),
-            embedded_images.to(dtype=embedded_bos.dtype),
-            prompt_embeds.expand(embedded_images.shape[0], -1, -1),
+            embedded_bos.expand(embedded_images.shape[0], -1, -1).to(embedded_bos.device),
+            embedded_images.to(device=embedded_bos.device, dtype=embedded_bos.dtype),
+            prompt_embeds.expand(embedded_images.shape[0], -1, -1).to(embedded_bos.device),
         ], dim=1)
 
+        # Initialize input_ids and attention_mask
         input_ids = torch.cat([
             torch.tensor([[tokenizer.bos_token_id]], dtype=torch.long),
             torch.zeros((1, embedded_images.shape[1]), dtype=torch.long),
             prompt,
-        ], dim=1).to('cuda')
+        ], dim=1).to(embedded_bos.device)
+
         attention_mask = torch.ones_like(input_ids)
-        
-        generate_ids = text_model.generate(input_ids, inputs_embeds=inputs_embeds, attention_mask=attention_mask, max_new_tokens=max_new_tokens, do_sample=True, top_k=10, temperature=temperature, suppress_tokens=None)
+
+        # Move tensors to the correct device (though they should already be on the correct device)
+        device = text_model.device
+        input_ids = input_ids.to(device)
+        inputs_embeds = inputs_embeds.to(device)
+        attention_mask = attention_mask.to(device)
+
+        # Generate the output
+        generate_ids = text_model.generate(
+            input_ids,
+            inputs_embeds=inputs_embeds,
+            attention_mask=attention_mask,
+            max_new_tokens=max_new_tokens,
+            do_sample=True,
+            top_k=10,
+            temperature=temperature,
+            suppress_tokens=None
+        )
 
         # Trim off the prompt
         generate_ids = generate_ids[:, input_ids.shape[1]:]
