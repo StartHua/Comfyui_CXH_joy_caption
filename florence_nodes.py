@@ -144,8 +144,8 @@ class CXH_Florence2Run:
                     'ocr',
                     'ocr_with_region',
                     'docvqa',
-                    'mixed_caption',
-                    'generate_tags'
+                    'mixed_caption(PromptGen 1.5)',
+                    'generate_tags(PromptGen 1.5)'
                     ],
                     {
                     "default": 'more_detailed_caption'
@@ -193,7 +193,9 @@ class CXH_Florence2Run:
             'referring_expression_segmentation': '<REFERRING_EXPRESSION_SEGMENTATION>',
             'ocr': '<OCR>',
             'ocr_with_region': '<OCR_WITH_REGION>',
-            'docvqa': '<DocVQA>'
+            'docvqa': '<DocVQA>',
+            'mixed_caption(PromptGen 1.5)':'<MIXED_CAPTION>',
+            'generate_tags(PromptGen 1.5)':'<GENERATE_TAGS>'
         }
         task_prompt = prompts.get(task, '<OD>')
 

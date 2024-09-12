@@ -1,0 +1,397 @@
+{
+  "last_node_id": 9,
+  "last_link_id": 9,
+  "nodes": [
+    {
+      "id": 5,
+      "type": "CXH_Florence2Run",
+      "pos": {
+        "0": 650,
+        "1": 831,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 400,
+        "1": 352
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": [
+            6
+          ],
+          "slot_index": 2,
+          "shape": 3
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "mixed_caption(PromptGen 1.5)",
+        true,
+        false,
+        1024,
+        3,
+        true,
+        "",
+        1942,
+        "randomize"
+      ],
+      "color": "#1b4669"
+    },
+    {
+      "id": 6,
+      "type": "CXH_DownloadAndLoadFlorence2Model",
+      "pos": {
+        "0": 628,
+        "1": 671,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 415.8000183105469,
+        "1": 106
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "links": [
+            5,
+            8
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_DownloadAndLoadFlorence2Model"
+      },
+      "widgets_values": [
+        "MiaoshouAI/Florence-2-large-PromptGen-v1.5",
+        "fp16",
+        "sdpa"
+      ],
+      "color": "#1b4669"
+    },
+    {
+      "id": 9,
+      "type": "easy showAnything",
+      "pos": {
+        "0": 1125,
+        "1": 1279,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 402.45989990234375,
+        "1": 164.83221435546875
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 9
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "1girl, solo, long hair, looking at viewer, skirt, red hair, thighhighs, long sleeves, closed mouth, standing, full body, shoes, pleated skirt, socks, indoors, miniskirt, hood, striped, white footwear, hoodie, crossed arms, table, white socks, sneakers, tennis ball, rack"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "CXH_Florence2Run",
+      "pos": {
+        "0": 660,
+        "1": 1237,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 400,
+        "1": 352
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": [
+            9
+          ],
+          "slot_index": 2,
+          "shape": 3
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CXH_Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "generate_tags(PromptGen 1.5)",
+        true,
+        false,
+        1024,
+        3,
+        true,
+        "",
+        470,
+        "randomize"
+      ],
+      "color": "#1b4669"
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": {
+        "0": 180,
+        "1": 1064,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4,
+            7
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "风格趋势_68550099(1).jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "easy showAnything",
+      "pos": {
+        "0": 1113,
+        "1": 876,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "size": [
+        496.79671515656423,
+        313.44720309527156
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 6
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "a high-resolution photograph featuring a young woman with fair skin and long, wavy red hair, standing against a dark blue wall, she has a slender physique with a slender build and fair skin, she is wearing a navy blue hoodie with a white, diamond-patterned design, a matching navy blue mini skirt, and white knee-high socks with yellow stripes, her outfit is accessorized with white sneakers and a white headband with a black and white striped pattern, the background consists of a minimalist, modern setting with a carpeted floor in various shades of green and beige, scattered around her are several white tennis balls, to her left, there is a green cabinet with a rattan-like texture, and to her right, a white wire basket filled with tennis balls is placed on a metal stand, to the right, on the floor is a vintage radio, adding a retro touch to the scene, the overall color palette is dominated by dark blue and green tones, creating a visually striking contrast, the lighting is soft and natural, enhancing the textures and details of the objects and the woman's outfit, the photograph is likely taken during the day, as indicated by the high level of detail and the softness of the carpet and the smoothness of her skin\n\n \\(polo\\), 1girl, solo, long hair, looking at viewer, skirt, brown hair"
+      ]
+    }
+  ],
+  "links": [
+    [
+      4,
+      3,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      6,
+      0,
+      5,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      6,
+      5,
+      2,
+      7,
+      0,
+      "*"
+    ],
+    [
+      7,
+      3,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      8,
+      6,
+      0,
+      8,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      9,
+      8,
+      2,
+      9,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9090909090909091,
+      "offset": [
+        -461.8324362747284,
+        -716.5616485145835
+      ]
+    }
+  },
+  "version": 0.4
+}
