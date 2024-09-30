@@ -23,7 +23,8 @@ def fixed_get_imports(filename: str | os.PathLike) -> list[str]:
     if not str(filename).endswith("modeling_florence2.py"):
         return get_imports(filename)
     imports = get_imports(filename)
-    imports.remove("flash_attn")
+    if "flash_attn" in imports:
+        imports.remove("flash_attn")
     return imports
 
 
@@ -157,7 +158,7 @@ class CXH_Florence2Run:
                 "num_beams": ("INT", {"default": 3, "min": 1, "max": 64}),
                 "do_sample": ("BOOLEAN", {"default": True}),
                 "output_mask_select": ("STRING", {"default": ""}),
-                "seed":("INT"),
+                "seed":("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
             }
     
         }
