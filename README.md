@@ -1,5 +1,12 @@
 .2024-10-12 添加joy alpha2
 
+模型下载：https://pan.baidu.com/s/1dOjbUEacUOhzFitAQ3uIeQ?pwd=4ypv#list/path=%2F
+
+Joy_caption_alpha 放到 models\Joy_caption_alpha 下载：https://huggingface.co/spaces/fancyfeast/joy-caption-alpha-two/tree/main/cgrkzexw-599808
+
+![1728728834716](https://github.com/user-attachments/assets/3adc7c92-1247-436e-8589-f5c64d33378e)
+
+
 ![joy_alpha](https://github.com/user-attachments/assets/4ab7de6a-405e-405b-b03e-0850522e3951)
 
 
