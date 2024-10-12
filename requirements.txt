@@ -10,3 +10,5 @@ sentencepiece==0.1.99
 accelerate>=0.30.1
 bitsandbytes>=0.43.1
 peft>=0.9.0
+datamodel-code-generator>=0.26.0
+matplotlib
