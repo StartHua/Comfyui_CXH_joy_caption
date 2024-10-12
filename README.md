@@ -1,3 +1,8 @@
+.2024-10-12 添加joy alpha2
+
+![joy_alpha](https://github.com/user-attachments/assets/4ab7de6a-405e-405b-b03e-0850522e3951)
+
+
 .2024-9-9 florence2 Add Florence-2-large-PromptGen-v1.5 and MiniCPM3-4B(CXH_MinCP3_4B_Load CXH_MinCP3_4B_Chat) 
     MiniCPM3-4B聊天 翻译，改写都很强
 
