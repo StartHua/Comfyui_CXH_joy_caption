@@ -454,7 +454,7 @@ class Joy_caption_alpha_run:
         attention_mask = torch.ones_like(input_ids)
 
         generate_ids = text_model.generate(input_ids, inputs_embeds=input_embeds, attention_mask=attention_mask,
-                                           max_new_tokens=300, do_sample=True,
+                                           max_new_tokens=max_new_tokens, do_sample=True,
                                            suppress_tokens=None)  # Uses the default which is temp=0.6, top_p=0.9
 
 
