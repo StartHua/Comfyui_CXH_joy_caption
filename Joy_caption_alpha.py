@@ -318,7 +318,7 @@ class Joy_caption_alpha_prompt:
 
          
         # 额外选项从第三个参数开始
-        extra_options = options_selected[2:]
+        extra_options = options_selected[3:]
 
         length = None if caption_length == "any" else caption_length
         if isinstance(length, str):
