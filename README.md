@@ -1,3 +1,8 @@
+.2024-10-16 添加批量打标
+
+![批量打标](https://github.com/user-attachments/assets/15e4075b-ed78-4e88-b586-09f65483c991)
+
+
 .2024-10-12 添加joy alpha2
 
 模型下载：https://pan.baidu.com/s/1dOjbUEacUOhzFitAQ3uIeQ?pwd=4ypv#list/path=%2F
