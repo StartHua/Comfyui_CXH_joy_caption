@@ -13,6 +13,8 @@ import torchvision.transforms.functional as TVF
 from .lib.ximg import *
 from .lib.xmodel import *
 import re
+import time
+from datetime import datetime, timedelta
 
 from comfy.model_management import  unload_all_models, soft_empty_cache,get_torch_device
 
@@ -475,3 +477,192 @@ class Joy_caption_alpha_run:
                 soft_empty_cache()
 
         return (caption.strip(), )
+    
+
+# ===============批量打标=============
+class Joy_caption_alpha_batch:
+
+    def __init__(self):
+        pass
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "JoyPipeline_alpha": ("JoyPipeline_alpha",),
+                "img_dir": ("STRING",),
+                "save_dir":   ("STRING",),
+                "trigger":   ("STRING", {"multiline": False, "default": "trigger"},),
+                "prompt":   ("STRING", {"multiline": True, "default": "A descriptive caption for this image"},),
+                "format": (["png", "jpg"],),
+                "max_new_tokens":("INT", {"default": 1024, "min": 10, "max": 4096, "step": 1}),
+                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "cache": ("BOOLEAN", {"default": False}),
+                "low_vram": ("BOOLEAN", {"default": False}),
+            }
+        }
+
+    CATEGORY = "CXH/LLM"
+    RETURN_TYPES = ("STRING",)
+    FUNCTION = "gen"
+    def gen(self,JoyPipeline_alpha,img_dir,save_dir,trigger,prompt,format,max_new_tokens,temperature,cache,low_vram): 
+
+        torch.cuda.empty_cache()
+        directory = img_dir
+        if low_vram :
+            unload_all_models()
+
+        joy_pipeline =  JoyPipeline_alpha 
+        if joy_pipeline.clip_processor == None :
+            joy_pipeline.parent.loadCheckPoint()    
+
+        clip_processor = joy_pipeline.clip_processor
+        tokenizer = joy_pipeline.tokenizer
+        clip_model = joy_pipeline.clip_model
+        image_adapter = joy_pipeline.image_adapter
+        text_model = joy_pipeline.text_model
+
+        # 批量读取
+        if not os.path.isdir(directory):
+            raise FileNotFoundError(f"Directory '{directory}' cannot be found.")
+        dir_files = os.listdir(directory)
+        if len(dir_files) == 0:
+            raise FileNotFoundError(f"No files in directory '{directory}'.")
+
+        valid_extensions = ['.jpg', '.jpeg', '.png', '.webp']
+        dir_files = [f for f in dir_files if any(f.lower().endswith(ext) for ext in valid_extensions)]
+
+        dir_files = sorted(dir_files)
+        dir_files = [os.path.join(directory, x) for x in dir_files]
+
+         # 创建保存目录
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+
+        convo = [
+                {
+                    "role": "system",
+                    "content": "You are a helpful image captioner.",
+                },
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ]
+
+        convo_string = tokenizer.apply_chat_template(convo, tokenize=False, add_generation_prompt=True)
+        assert isinstance(convo_string, str)
+
+        convo_tokens = tokenizer.encode(convo_string, return_tensors="pt", add_special_tokens=False, truncation=False)
+        prompt_tokens = tokenizer.encode(prompt, return_tensors="pt", add_special_tokens=False, truncation=False)
+        assert isinstance(convo_tokens, torch.Tensor) and isinstance(prompt_tokens, torch.Tensor)
+        convo_tokens = convo_tokens.squeeze(0)  # Squeeze just to make the following easier
+        prompt_tokens = prompt_tokens.squeeze(0)
+
+        eot_id_indices = (convo_tokens == tokenizer.convert_tokens_to_ids("<|eot_id|>")).nonzero(as_tuple=True)[
+                0].tolist()
+        assert len(eot_id_indices) == 2, f"Expected 2 <|eot_id|> tokens, got {len(eot_id_indices)}"
+
+        preamble_len = eot_id_indices[1] - prompt_tokens.shape[0]  # Number of tokens before the prompt
+
+
+        # text_model = joy_two_pipeline.llm.load_llm_model(joy_two_pipeline.model)
+        # Embed the tokens
+        convo_embeds = text_model.model.embed_tokens(convo_tokens.unsqueeze(0).to('cuda'))
+
+        index1 = 0
+        for image_path in dir_files:
+            if os.path.isdir(image_path) and os.path.ex:
+                continue
+            start = time.time()
+           
+            input_image = open_image(image_path)
+            input_image = ImageOps.exif_transpose(input_image)
+            input_image = input_image.convert("RGB")
+
+
+            image = input_image.resize((384, 384), Image.LANCZOS)
+            pixel_values = TVF.pil_to_tensor(image).unsqueeze(0) / 255.0
+            pixel_values = TVF.normalize(pixel_values, [0.5], [0.5])
+            pixel_values = pixel_values.to('cuda')
+
+
+            with torch.amp.autocast_mode.autocast('cuda', enabled=True):
+                vision_outputs = clip_model(pixel_values=pixel_values, output_hidden_states=True)
+                embedded_images = image_adapter(vision_outputs.hidden_states)
+                embedded_images = embedded_images.to('cuda')
+
+            input_embeds = torch.cat([
+                convo_embeds[:, :preamble_len],  # Part before the prompt
+                embedded_images.to(dtype=convo_embeds.dtype),  # Image
+                convo_embeds[:, preamble_len:],  # The prompt and anything after it
+            ], dim=1).to('cuda')
+
+            input_ids = torch.cat([
+                convo_tokens[:preamble_len].unsqueeze(0),
+                torch.zeros((1, embedded_images.shape[1]), dtype=torch.long),
+                # Dummy tokens for the image (TODO: Should probably use a special token here so as not to confuse any generation algorithms that might be inspecting the input)
+                convo_tokens[preamble_len:].unsqueeze(0),
+            ], dim=1).to('cuda')
+            attention_mask = torch.ones_like(input_ids)
+
+            generate_ids = text_model.generate(input_ids, inputs_embeds=input_embeds, attention_mask=attention_mask,
+                                            max_new_tokens=max_new_tokens, do_sample=True,
+                                            suppress_tokens=None)  # Uses the default which is temp=0.6, top_p=0.9
+
+
+            generate_ids = generate_ids[:, input_ids.shape[1]:]
+            if generate_ids[0][-1] == tokenizer.eos_token_id or generate_ids[0][-1] == tokenizer.convert_tokens_to_ids(
+                    "<|eot_id|>"):
+                generate_ids = generate_ids[:, :-1]
+
+            caption = tokenizer.batch_decode(generate_ids, skip_special_tokens=False, clean_up_tokenization_spaces=False)[0]
+            # 提示词
+            lenName = str(index1)
+            txt_content = trigger + "," + caption.strip()
+            txt_file_name = f"{trigger}_{lenName}.txt"
+            txt_save_path = os.path.join(save_dir, txt_file_name)
+            try:
+                with open(txt_save_path, 'w', encoding='utf-8') as file:
+                    file.write(txt_content)
+            except IOError as e:
+                print(f"保存文件时发生错误: {e}")
+            # 图片
+            img_file_name = f"{trigger}_{lenName}.{format}"
+            if format != "png":
+                if input_image.mode == "RGBA":
+                    input_image = input_image.convert("RGB")
+            img_save_path = os.path.join(save_dir, img_file_name)
+            input_image.save(img_save_path)
+            end = time.time()
+            execution_time = calculate_seconds_difference(start, end)
+            temp = f":{execution_time:.3f}s"
+            index1 = index1 + 1
+            print(str(index1)+"/"+str(len(dir_files)) +":"+temp)
+        print("finish结束")
+
+        if cache == False:
+            joy_pipeline.parent.clearCache()  
+            torch.cuda.empty_cache()
+            import gc
+            gc.collect()
+            if low_vram:
+                unload_all_models()
+                soft_empty_cache()
+        lenName = len(os.listdir(save_dir))
+        return (str(lenName/2), )
+    
+def calculate_seconds_difference(start_time, end_time):
+    """
+    计算两个时间点之间的秒数差异
+    
+    :param start_time: 开始时间（可以是时间戳或datetime对象）
+    :param end_time: 结束时间（可以是时间戳或datetime对象）
+    :return: 秒数差异（浮点数）
+    """
+    # 如果输入是datetime对象，转换为时间戳
+    if isinstance(start_time, datetime):
+        start_time = start_time.timestamp()
+    if isinstance(end_time, datetime):
+        end_time = end_time.timestamp()
+    
+    return end_time - start_time
