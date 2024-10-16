@@ -1,7 +1,8 @@
-.2024-10-16 添加批量打标
+.2024-10-16 添加批量打标：大概4~5秒一张图
 
 ![批量打标](https://github.com/user-attachments/assets/15e4075b-ed78-4e88-b586-09f65483c991)
 
+![1729064090078](https://github.com/user-attachments/assets/bb61ac24-5bec-4018-98cf-8007533d4dbc)
 
 .2024-10-12 添加joy alpha2
 
