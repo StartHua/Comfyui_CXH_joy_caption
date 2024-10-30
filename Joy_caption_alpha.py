@@ -489,8 +489,8 @@ class Joy_caption_alpha_batch:
         return {
             "required": {
                 "JoyPipeline_alpha": ("JoyPipeline_alpha",),
-                "img_dir": ("STRING",),
-                "save_dir":   ("STRING",),
+                "img_dir": ("STRING", {"multiline": True, "default": ""},),
+                "save_dir":   ("STRING", {"multiline": True, "default": ""},),
                 "trigger":   ("STRING", {"multiline": False, "default": "trigger"},),
                 "prompt":   ("STRING", {"multiline": True, "default": "A descriptive caption for this image"},),
                 "format": (["png", "jpg"],),
@@ -651,18 +651,3 @@ class Joy_caption_alpha_batch:
         lenName = len(os.listdir(save_dir))
         return (str(lenName/2), )
     
-def calculate_seconds_difference(start_time, end_time):
-    """
-    计算两个时间点之间的秒数差异
-    
-    :param start_time: 开始时间（可以是时间戳或datetime对象）
-    :param end_time: 结束时间（可以是时间戳或datetime对象）
-    :return: 秒数差异（浮点数）
-    """
-    # 如果输入是datetime对象，转换为时间戳
-    if isinstance(start_time, datetime):
-        start_time = start_time.timestamp()
-    if isinstance(end_time, datetime):
-        end_time = end_time.timestamp()
-    
-    return end_time - start_time

@@ -16,6 +16,7 @@ import io
 import base64
 import requests
 from io import BytesIO
+from datetime import datetime, timedelta
 
 def tensor2pil(t_image: torch.Tensor)  -> Image:
     return Image.fromarray(np.clip(255.0 * t_image.cpu().numpy().squeeze(), 0, 255).astype(np.uint8))
@@ -129,3 +130,34 @@ def open_image(path):
         if prev_value is not None:
             ImageFile.LOAD_TRUNCATED_IMAGES = prev_value
         return img
+
+# 批量读取
+def batch_image(directory):
+    if not os.path.isdir(directory):
+        raise FileNotFoundError(f"Directory '{directory}' cannot be found.")
+    dir_files = os.listdir(directory)
+    if len(dir_files) == 0:
+        raise FileNotFoundError(f"No files in directory '{directory}'.")
+
+    valid_extensions = ['.jpg', '.jpeg', '.png', '.webp']
+    dir_files = [f for f in dir_files if any(f.lower().endswith(ext) for ext in valid_extensions)]
+
+    dir_files = sorted(dir_files)
+    dir_files = [os.path.join(directory, x) for x in dir_files]    
+    return dir_files
+
+def calculate_seconds_difference(start_time, end_time):
+    """
+    计算两个时间点之间的秒数差异
+    
+    :param start_time: 开始时间（可以是时间戳或datetime对象）
+    :param end_time: 结束时间（可以是时间戳或datetime对象）
+    :return: 秒数差异（浮点数）
+    """
+    # 如果输入是datetime对象，转换为时间戳
+    if isinstance(start_time, datetime):
+        start_time = start_time.timestamp()
+    if isinstance(end_time, datetime):
+        end_time = end_time.timestamp()
+    
+    return end_time - start_time
