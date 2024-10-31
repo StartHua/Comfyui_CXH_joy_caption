@@ -1,3 +1,8 @@
+.20240-10-30 添加批量图片分类
+
+![workflow_min2 6classifiy_](https://github.com/user-attachments/assets/1687cc01-89c4-4628-8f8c-abc641c62a43)
+
+
 .2024-10-16 添加批量打标：4090大概4~5秒一张图
 
 ![批量打标](https://github.com/user-attachments/assets/15e4075b-ed78-4e88-b586-09f65483c991)
