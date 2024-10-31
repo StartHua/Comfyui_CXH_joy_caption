@@ -69,14 +69,15 @@ class CXH_MinCP3_4B_Chat:
                 "prompt":   ("STRING", {"multiline": True, "default": "Provide a detailed description of the details and content contained in the image, and generate a short prompt that can be used for image generation tasks in Stable Diffusion,remind you only need respons prompt itself and no other information."},),
                 "top_p":("FLOAT", {"default": 0.7, "min": 0.0, "max": 1, "step": 1}),
                 "max_tokens":("INT", {"default": 1024, "min": 10, "max": 4048, "step": 1}),
-                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01})
+                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "seed": ("INT", {"default": 656545, "min": 0, "max": 1000000}),
             }
         }
 
     CATEGORY = "CXH/LLM"
     RETURN_TYPES = ("STRING",)
     FUNCTION = "gen"
-    def gen(self,pipe,prompt,top_p,max_tokens,temperature): 
+    def gen(self,pipe,prompt,top_p,max_tokens,temperature,seed): 
 
         messages = [
             {"role": "user", "content": prompt},

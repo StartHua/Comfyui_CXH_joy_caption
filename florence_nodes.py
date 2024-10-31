@@ -157,7 +157,7 @@ class CXH_Florence2Run:
                 "num_beams": ("INT", {"default": 3, "min": 1, "max": 64}),
                 "do_sample": ("BOOLEAN", {"default": True}),
                 "output_mask_select": ("STRING", {"default": ""}),
-                "seed":("INT"),
+                "seed": ("INT", {"default": 656545, "min": 0, "max": 1000000}),
             }
     
         }

@@ -29,13 +29,14 @@ class CXH_Min2_6_classifiy :
                 "format": (["png", "jpg"],),
                 "max_tokens":("INT", {"default": 1024, "min": 10, "max": 4048, "step": 1}),
                 "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "seed": ("INT", {"default": 656545, "min": 0, "max": 1000000}),
             }
         }
 
     CATEGORY = "CXH/LLM"
     RETURN_TYPES = ("STRING",)
     FUNCTION = "gen"
-    def gen(self,pipe,img_dir,save_dir,classifiy_type,format,max_tokens,temperature): 
+    def gen(self,pipe,img_dir,save_dir,classifiy_type,format,max_tokens,temperature,seed): 
 
         dir_files = batch_image(img_dir)
 

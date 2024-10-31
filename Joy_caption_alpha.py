@@ -364,13 +364,14 @@ class Joy_caption_alpha_run:
                 "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "cache": ("BOOLEAN", {"default": False}),
                 "low_vram": ("BOOLEAN", {"default": False}),
+                "seed": ("INT", {"default": 656545, "min": 0, "max": 1000000}),
             }
         }
 
     CATEGORY = "CXH/LLM"
     RETURN_TYPES = ("STRING",)
     FUNCTION = "gen"
-    def gen(self,JoyPipeline_alpha,image,prompt,max_new_tokens,temperature,cache,low_vram): 
+    def gen(self,JoyPipeline_alpha,image,prompt,max_new_tokens,temperature,cache,low_vram,seed): 
 
         torch.cuda.empty_cache()
 
@@ -498,13 +499,14 @@ class Joy_caption_alpha_batch:
                 "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "cache": ("BOOLEAN", {"default": False}),
                 "low_vram": ("BOOLEAN", {"default": False}),
+                "seed": ("INT", {"default": 656545, "min": 0, "max": 1000000}),
             }
         }
 
     CATEGORY = "CXH/LLM"
     RETURN_TYPES = ("STRING",)
     FUNCTION = "gen"
-    def gen(self,JoyPipeline_alpha,img_dir,save_dir,trigger,prompt,format,max_new_tokens,temperature,cache,low_vram): 
+    def gen(self,JoyPipeline_alpha,img_dir,save_dir,trigger,prompt,format,max_new_tokens,temperature,cache,low_vram,seed): 
 
         torch.cuda.empty_cache()
         directory = img_dir
