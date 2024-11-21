@@ -1,0 +1,15 @@
+[project]
+name = "comfyui_cxh_joy_caption"
+description = "Nodes:Joy_caption_load, Joy_caption"
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["huggingface_hub==0.24.3", "accelerate", "#torch", "transformers==4.43.3", "sentencepiece"]
+
+[project.urls]
+Repository = "https://github.com/StartHua/Comfyui_CXH_joy_caption"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "Comfyui_CXH_joy_caption"
+Icon = ""
