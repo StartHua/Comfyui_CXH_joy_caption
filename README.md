@@ -1,3 +1,8 @@
+添加批量文件夹打标：文件夹命名规则 名字_trigg
+![workflow](https://github.com/user-attachments/assets/d30a2d7f-918a-4837-b85c-be01913d2775)
+![1737366489766](https://github.com/user-attachments/assets/cb885492-a158-49bf-ba2e-956a1ba2d780)
+
+
 .20240-10-30 添加批量图片分类
 
 ![workflow_min2 6classifiy_](https://github.com/user-attachments/assets/1687cc01-89c4-4628-8f8c-abc641c62a43)
