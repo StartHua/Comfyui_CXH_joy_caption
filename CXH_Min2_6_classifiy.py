@@ -75,11 +75,14 @@ class CXH_Min2_6_classifiy :
                 max_tokens=max_tokens,
                 temperature=temperature,
             )
+            generated_text = "other"
+            if res == "0" or res == "1":
+                generated_text = res
 
-            generated_text = ""
-            for new_text in res:
-                generated_text += new_text
-                print(new_text, flush=True, end='')
+            # generated_text = ""
+            # for new_text in res:
+            #     generated_text += new_text
+            #     print(new_text, flush=True, end='')
 
             savePath = os.path.join(save_dir,generated_text)
              # 创建保存目录
