@@ -40,6 +40,11 @@ class JoyPipeline:
         self.parent = None
     
     def clearCache(self):
+	del self.clip_model
+	del self.clip_processor
+	del self.tokenizer
+	del self.text_model
+	del self.image_adapter
         self.clip_model = None
         self.clip_processor =None
         self.tokenizer = None

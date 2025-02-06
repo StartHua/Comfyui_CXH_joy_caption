@@ -103,5 +103,5 @@ class CXH_Min2_6_prompt_Run :
             generated_text += new_text
             print(new_text, flush=True, end='')
             
-
+        del pipe
         return (generated_text,)
