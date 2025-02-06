@@ -13,6 +13,27 @@ import time
 from .lib.ximg import *
 from .lib.xmodel import *
 
+classification_rules = """
+You are a fashion image classifier. Analyze clothing images following these priority rules and categories. When an item could fit multiple categories, use the highest priority category.
+Priority Order (Highest to Lowest):
+1. MAN
+2. WoMAN
+Required Output Format:
+[CATEGORY_NAME]
+
+Classification Rules:
+1. Always check categories in order from highest to lowest priority
+2. Use the highest priority category that applies
+3. Output only the category name in all caps
+4. No additional text or explanations in output
+"""
+
+def process_category_name(category_name):
+    # 如果字符串包含方括号，则删除它们
+    if category_name.startswith('[') and category_name.endswith(']'):
+        category_name = category_name[1:-1]
+    return category_name
+
 class CXH_Min2_6_classifiy :
 
     def __init__(self):
@@ -25,7 +46,7 @@ class CXH_Min2_6_classifiy :
                 "pipe": ("CXH_Hg_Pipe",),
                 "img_dir": ("STRING", {"multiline": False, "default": ""},),
                 "save_dir":   ("STRING", {"multiline": False, "default": ""},),
-                "classifiy_type":   ("STRING", {"multiline": True, "default": "man,woman"},),
+                "prompt":    ("STRING", {"multiline": True, "default": classification_rules},),
                 "format": (["png", "jpg"],),
                 "max_tokens":("INT", {"default": 1024, "min": 10, "max": 4048, "step": 1}),
                 "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01}),
@@ -33,14 +54,16 @@ class CXH_Min2_6_classifiy :
             }
         }
 
-    CATEGORY = "CXH/LLM"
-    RETURN_TYPES = ("STRING",)
+    RETURN_TYPES = () #RETURN_TYPES = () RETURN_TYPES = ("DICT",)返回字典
     FUNCTION = "gen"
-    def gen(self,pipe,img_dir,save_dir,classifiy_type,format,max_tokens,temperature,seed): 
+    OUTPUT_NODE = True #OUTPUT_NODE = True 没输出
+    CATEGORY = "CXH/LLM"
+
+    def gen(self,pipe,img_dir,save_dir,prompt,format,max_tokens,temperature,seed): 
 
         dir_files = batch_image(img_dir)
 
-        prompt = f"Determine whether the following pictures belong to the following types:{str(classifiy_type)},You only need to output the type, you do not need to output anything else to remember!"
+        # prompt = f"Determine whether the following pictures belong to the following types:{str(classifiy_type)},You only need to output the type, you do not need to output anything else to remember!"
 
          # 创建保存目录
         if not os.path.exists(save_dir):
@@ -75,14 +98,12 @@ class CXH_Min2_6_classifiy :
                 max_tokens=max_tokens,
                 temperature=temperature,
             )
-            generated_text = "other"
-            if res == "0" or res == "1":
-                generated_text = res
+ 
+            generated_text = process_category_name(res)
 
-            # generated_text = ""
-            # for new_text in res:
-            #     generated_text += new_text
-            #     print(new_text, flush=True, end='')
+            if len(generated_text) >= 80:
+                generated_text = "UNKNOWN"
+
 
             savePath = os.path.join(save_dir,generated_text)
              # 创建保存目录
@@ -90,7 +111,8 @@ class CXH_Min2_6_classifiy :
                 os.makedirs(savePath)
 
             lenName = str(index1)
-            img_file_name = f"{lenName}.{format}"
+            # img_file_name = f"{lenName}.{format}"
+            img_file_name = os.path.basename(image_path)
             input_image = image
             if format != "png":
                 if input_image.mode == "RGBA":
@@ -105,5 +127,5 @@ class CXH_Min2_6_classifiy :
             index1 = index1 + 1
             print(str(index1)+"/"+str(len(dir_files)) +":"+temp)    
 
-        return (str(index1),)
+        return ()
 
